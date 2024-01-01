@@ -1,0 +1,3 @@
+[submodule "word_clone"]
+	path = word_clone
+	url = https://github.com/StephTorres22/wordle_clone
