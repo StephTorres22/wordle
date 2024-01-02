@@ -1,12 +1,14 @@
 import "dotenv/config"; //this is how you use .env files and dotenv using es6 modules
-
 import mongoose from "mongoose";
 import { Word } from "./models/wordModel.js";
 import { getRandomWord } from "./getRandomWord.js";
 import express from "express";
+import cors from "cors";
 
 const app = express();
 const port = 8000;
+
+app.use(cors());
 
 app.get("/", async (req, res) => {
   const todaysDate = new Date().toDateString();
@@ -23,9 +25,6 @@ app.get("/", async (req, res) => {
     ) {
       /* everything is being sent to test, need to find a way to change that */
       todaysWord = await Word.create(newTargetWord);
-      console.log(
-        `Todays new word is ${todaysWord.word}, ${todaysWord.dateUsed} and it has been created in the db`
-      );
     } else {
       todaysWord = await Word.find({ dateUsed: todaysDate });
     }
@@ -39,7 +38,7 @@ app.get("/", async (req, res) => {
 mongoose
   .connect(process.env.MONGODB)
   .then(() => {
-    console.log("Connected to Words database");
+    //console.log("Connected to Words database");
     app.listen(port, () => {
       console.log(`Apps on port: ${port}`);
     });

@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+import fetch from "node-fetch"; //only need this for node
 /* Playing around with random word apis */
 
 export async function getRandomWord() {
