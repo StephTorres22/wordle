@@ -1,1 +1,0 @@
-export const mongoURl = "mongodb+srv://stephanetorres90:End2End2@words.jy9mrle.mongodb.net/?retryWrites=true&w=majority"
