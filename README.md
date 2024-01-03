@@ -4,7 +4,7 @@ Other technologies used are NodeJS for the backend, using Express and Mongoose, 
 Please ensure Node, and npm are installed on machine before use.
 
 wordle_server contains backend logic: - run "npm install" to install relevant dependencies.
-                                      - run "npm run start" to start server.
+                                      - run "npm run start" to start server. "ctrl + c" to quit.
                                       - run "npm run dev" to start up in development with hot reloading.
 
 server is currently not deployed, it's running on localhost 8000.
