@@ -36,9 +36,9 @@ app.get("/", async (req, res) => {
 });
 
 mongoose
-  .connect(process.env.MONGODB)
+  .connect(process.env.MONGODB, { dbName: "wordle_words" })
   .then(() => {
-    //console.log("Connected to Words database");
+    console.log("Connected to Words database");
     app.listen(port, () => {
       console.log(`Apps on port: ${port}`);
     });
