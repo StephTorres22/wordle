@@ -16,3 +16,24 @@ word_clone contains the frontend: - run "npm install" to install all the relevan
 
 build the server first, and then build react app.
 
+
+
+STILL TO DO:
+
+- Ensure user input is a valid word, deny attempt if it isn't.
+
+- Ensure only letters can be passed into input fields, no numbers or special characters, regex match?
+
+- Win conditions, what happens on win and loss... 
+                                                 Ties in with persistence, stats page/modal.
+                                                 On failure show actual word.
+                                                 
+
+- Persistence: Keep track of user attempts and remaining number of attempts 
+               Keep score, successful days, how many attempts, percentage win vs losses, local storage? or create users and store, retrieve, update etc in Mongo. cookies?
+               
+
+- Keyboard graphic, click listeners on keys that interact with inputs, change colour depending if letter has been used and if letter is present/correct position.
+                    different layouts for different countries or keep it as QWERTY?
+
+
