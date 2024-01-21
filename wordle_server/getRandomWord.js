@@ -8,3 +8,5 @@ export async function getRandomWord() {
   const word = await data.json();
   return word[0];
 }
+
+

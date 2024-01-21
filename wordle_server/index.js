@@ -9,6 +9,48 @@ const app = express();
 const port = 8000;
 
 app.use(cors());
+app.use(express.json())
+const todaysTargetWord = runAtSpecificTimeOfDay(0, 0, getRandomWord);
+function runAtSpecificTimeOfDay(hour, minutes, func) {
+  const twentyFourHours = 86400000;
+  const now = new Date();
+  let eta_ms =
+    new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+      hour,
+      minutes,
+      0,
+      0
+    ).getTime() - now;
+  if (eta_ms < 0) {
+    eta_ms += twentyFourHours;
+  }
+  setTimeout(function () {
+    //run once
+    func();
+    // run every 24 hours from now on
+    setInterval(func, twentyFourHours);
+  }, eta_ms);
+}
+
+app.post("/", async (request, response) => {
+  try {
+    
+    const userGuess = request.body.word;
+    /* Shouldn't get here as have a client validation on the form */
+    if (request.body.word.length > 5) {
+      return response.status(400).send({ message: "Word is too short" });
+    }
+
+    console.log(userGuess);
+    return response.send(userGuess);
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message, request });
+  }
+});
 
 app.get("/", async (req, res) => {
   const todaysDate = new Date().toDateString();
