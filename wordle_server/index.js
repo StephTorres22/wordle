@@ -9,7 +9,7 @@ const app = express();
 const port = 8000;
 
 app.use(cors());
-app.use(express.json())
+app.use(express.json()); //need this to handle axios post requests!
 const todaysTargetWord = runAtSpecificTimeOfDay(0, 0, getRandomWord);
 function runAtSpecificTimeOfDay(hour, minutes, func) {
   const twentyFourHours = 86400000;
@@ -37,7 +37,6 @@ function runAtSpecificTimeOfDay(hour, minutes, func) {
 
 app.post("/", async (request, response) => {
   try {
-    
     const userGuess = request.body.word;
     /* Shouldn't get here as have a client validation on the form */
     if (request.body.word.length > 5) {
@@ -45,7 +44,7 @@ app.post("/", async (request, response) => {
     }
 
     console.log(userGuess);
-    return response.send(userGuess);
+    return response.status(200).send(`Recieved ${userGuess}`);
   } catch (error) {
     console.log(error.message);
     response.status(500).send({ message: error.message, request });
