@@ -61,6 +61,8 @@ function runAtSpecificTimeOfDay(hour, minutes, func) {
   }, eta_ms);
 } */
 
+const todaysWord = getTodaysWord();
+
 app.post("/", async (request, response) => {
   try {
     const userGuess = request.body;
@@ -68,7 +70,10 @@ app.post("/", async (request, response) => {
     if (request.body.length > 5) {
       return response.status(400).send({ message: "Word is too short" });
     }
-    const comparedLetterObjectsArray = checkAllLetters(userGuess, await getTodaysWord());
+    const comparedLetterObjectsArray = checkAllLetters(
+      userGuess,
+      await todaysWord
+    );
     return response.status(200).send(comparedLetterObjectsArray);
   } catch (error) {
     console.log(error.message);
@@ -87,8 +92,6 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
-
-
 
 /* app.get("/", async (req, res) => {
   const todaysDate = new Date().toDateString();
