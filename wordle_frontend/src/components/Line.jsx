@@ -30,17 +30,14 @@ function Line({ inputRef, handleInputChange, count }) {
   }, [word, count]);
 
   async function submitWord() {
-    const data = {
-      word,
-    };
     // console.log(data.word);
     await axios
-      .post("http://localhost:8000", data)
+      .post("http://localhost:8000", letterObjs)
       /*  .then(() => {
         console.log(`${data.word} was sent to server`);
       }) */
       .then((response) => {
-        console.log(response.data);
+        setLetterOjbs(response.data);
       })
       .catch((error) => {
         console.log(console.log(error));
