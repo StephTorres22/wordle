@@ -55,7 +55,7 @@ function Line({ inputRef, handleInputChange, count }) {
           setWord(e.target.value.trim().toUpperCase());
         }}
         disabled={disabled}
-        //style={{ opacity: "0" }}
+        style={{ opacity: "0" }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             if (word.length < 5) {
@@ -63,8 +63,6 @@ function Line({ inputRef, handleInputChange, count }) {
                 "Your word is too short, make sure it is a five letter word."
               );
             } else {
-              //checkAllLetters(word, targetWord);
-              //checkWord(word, targetWord, letterObjs);
               setDisabled(!disabled);
               setHasBeenUsed(!hasBeenUsed);
               handleInputChange(inputRef);
